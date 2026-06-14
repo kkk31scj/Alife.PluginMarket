@@ -8,8 +8,7 @@
   },
   "environments": {
     "nuget": {
-      "NAudio": ">=2.3.0",
-      "org.k2fsa.sherpa.onnx": ">=1.13.2"
+      "NAudio": ">=2.3.0"
     }
   },
   "releases": {

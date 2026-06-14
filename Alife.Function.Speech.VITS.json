@@ -9,8 +9,7 @@
   "environments": {
     "pip": {
       "numpy": "",
-      "torch": "",
-      "torchvision": ""
+      "torch": ""
     }
   },
   "releases": {

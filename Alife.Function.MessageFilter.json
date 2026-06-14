@@ -3,9 +3,6 @@
   "name": "消息过滤",
   "author": "Alife官方",
   "description": "统一管理消息提示注入与格式化；添加时间戳、通用提示和系统消息头。",
-  "dependencies": {
-    "Alife.Function.FunctionCaller": ""
-  },
   "releases": {
     "1.0.0": {
       "date": "2026-6-11",
