@@ -60,25 +60,25 @@ jobs:
 
                 if (fileCheck.includes('EXISTS')) {
                   const log = execSync(
-                    `git log --diff-filter=A --follow --format="%ae" -- "${filename}"`,
+                    `git log -1 --format="%ae" -- "${filename}"`,
                     { encoding: 'utf-8' }
                   ).trim();
 
                   if (!log) {
-                    core.setFailed(`File "${filename}" has no creation commit`);
+                    core.setFailed(`File "${filename}" has no commits`);
                     return;
                   }
 
-                  const fileCreatorEmail = log.split('\n').pop();
-                  const match = fileCreatorEmail === authorEmail;
+                  const lastModifierEmail = log;
+                  const match = lastModifierEmail === authorEmail;
 
                   core.info(
-                    `[${match ? 'PASS' : 'BLOCKED'}] ${filename} | Creator: ${fileCreatorEmail} | PR Author: ${authorEmail}`
+                    `[${match ? 'PASS' : 'BLOCKED'}] ${filename} | Last modifier: ${lastModifierEmail} | PR Author: ${authorEmail}`
                   );
 
                   if (!match) {
                     core.setFailed(
-                      `Blocked: "${filename}" created by "${fileCreatorEmail}", not "${authorEmail}"`
+                      `Blocked: "${filename}" last modified by "${lastModifierEmail}", not "${authorEmail}"`
                     );
                     return;
                   }
