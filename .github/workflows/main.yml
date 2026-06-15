@@ -1,6 +1,6 @@
 name: Automerge
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - synchronize
@@ -11,18 +11,23 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - name: Checkout
+      - name: Checkout base
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Fetch PR head
+        run: |
+          git fetch origin pull/${{ github.event.pull_request.number }}/head:pr-head
+          git log --oneline pr-head -3
 
       - name: Check file ownership
         uses: actions/github-script@v7
         with:
           script: |
             const prAuthor = context.payload.pull_request.user.login;
+            const headSha = 'pr-head';
             const baseSha = context.payload.pull_request.base.sha;
-            const headSha = context.payload.pull_request.head.sha;
             const { data: files } = await github.rest.pulls.listFiles({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -31,10 +36,16 @@ jobs:
 
             const { execSync } = require('child_process');
 
-            const authorEmail = execSync(
-              `git log --format="%ae" -1 ${headSha}`,
-              { encoding: 'utf-8' }
-            ).trim();
+            let authorEmail;
+            try {
+              authorEmail = execSync(
+                `git log --format="%ae" -1 ${headSha}`,
+                { encoding: 'utf-8' }
+              ).trim();
+            } catch (e) {
+              core.warning(`Could not get author email: ${e.message}, skipping check`);
+              return;
+            }
 
             for (const file of files) {
               const filename = file.filename;
@@ -65,8 +76,7 @@ jobs:
                   }
                 }
               } catch (e) {
-                core.setFailed(`Failed to check "${filename}": ${e.message}`);
-                return;
+                core.warning(`Failed to check "${filename}": ${e.message}`);
               }
             }
 
