@@ -1,0 +1,15 @@
+{
+  "id": "Alife.Plugin.ImageGen",
+  "name": "AI 图片生成",
+  "author": "爱奈丽",
+  "maintainer": "爱奈丽",
+  "description": "AI 图片生成功能，支持自定义 API 接口地址、Key、模型和尺寸。兼容 OpenAI 格式接口及 Stable Diffusion API。通过热编译单 cs 文件即可使用。",
+  "defaultCategory": "用户自制/图片生成",
+  "releases": {
+    "1.0.0": {
+      "date": "2026-06-15",
+      "note": "初始版本，支持热编译cs工作流",
+      "file": "https://github.com/AinaLife-ai/Alife.Plugin.ImageGen/archive/refs/heads/main.zip"
+    }
+  }
+}
