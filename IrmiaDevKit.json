@@ -1,0 +1,15 @@
+{
+  "id": "IrmiaDevKit",
+  "name": "IrmiaDevKit - 弥亚开发工具箱",
+  "author": "Jiangtangxi",
+  "maintainer": "Jiangtangxi",
+  "description": "将弥亚开发工具箱和KiraAI GitHub工具移植为Alife插件，提供46个Python开发工具，覆盖文件操作、搜索、Git、数据库、HTTP、系统、数据处理、GitHub API等功能",
+  "defaultCategory": "用户自制/开发工具",
+  "releases": {
+    "1.0.0": {
+      "date": "2026-06-15",
+      "note": "初始版本，包含46个Python开发工具，支持文件操作、搜索、Git、数据库、HTTP、系统、数据处理、GitHub API等功能",
+      "file": "https://github.com/xioaxixi877/IrmiaDevKit/archive/refs/heads/main.zip"
+    }
+  }
+}
