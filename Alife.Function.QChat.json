@@ -8,6 +8,11 @@
     "Alife.Function.Speech": ""
   },
   "releases": {
+    "1.0.1": {
+      "date": "2026-6-17",
+      "note": "1. 将QQ提示词改为文档内容，而非每次注入\n2. 增加QQ号为空时的异常判断",
+      "file": "https://github.com/BDFFZI/Alife.OfficialPluginStorage/raw/refs/heads/main/Alife.Function.QChat/1.0.1.zip"
+    },
     "1.0.0": {
       "date": "2026-6-11",
       "note": "初始版本",
