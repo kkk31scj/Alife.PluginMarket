@@ -2,6 +2,8 @@
 
 这里是 Alife 插件市场的插件注册表仓库，存放了所有插件的元数据。
 
+仓库支持自动合并PR，只要你是的新建文件，或者修改的文件没有冲突且是是上次提交者即可。
+
 ## 插件与模块
 
 在 Alife 中，插件和模块是分开的两种概念。不过要注意的是，一般常说的插件在 Alife 其实对应模块，因此如果有人说想做个插件，那可能时想通过模块来调整 Alife 的功能，而不是发布一个插件。
@@ -9,9 +11,9 @@
 ### 模块（Module）
 
 1. 模块是 Alife 中的功能单元，是运行时注入到 Agent 环境的实例。
-2. 模块有一套标准的C#标签和基类，是进行功能扩展时要编写的类。
-3. 模块通过 ModuleSystem 热编译加载，因此可以是 cs 或 dll。
-4. 模块存放在 Storage/Plugins，但本身与插件无关，存放其中的 cs 或 dll 可直接被识别加载。
+2. 只要是被打上`[Module]`标签的类即可被识别为模块，并被显示在功能模块页面。
+4. 模块通过 ModuleSystem 热编译加载，因此可以是 cs 或 dll。
+5. 模块存放在 Storage/Plugins，但本身与插件无关，存放其中的 cs 或 dll 可直接被识别加载。
 
 ### 插件（Plugin）
 
@@ -113,7 +115,7 @@ public class MyModule(
   "tags": ["视觉模型", "官方"],//插件标签，用于分类筛选（可选）
   "source": "https://github.com/xxx",//插件主页或联系方式（可选）
   "dependencies": { //依赖的其他插件
-    "{PluginID}": "{VersionDescription}" 
+    "{PluginID}": "{VersionDescription}" //版本描述采用pip格式，支持`>=`,`<=`,`==`,留空
   },
   "environments": { //依赖的环境（支持pip和nuget）
     "nuget": {
